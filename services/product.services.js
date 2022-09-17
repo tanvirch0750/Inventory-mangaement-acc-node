@@ -33,3 +33,25 @@ exports.createProductService = async (data) => {
   const product = await Product.create(data);
   return product;
 };
+
+exports.updateProductService = async (id, data) => {
+  // 1st METHOD
+  const product = await Product.findById(id);
+  const result = await product.set(data).save();
+  return result;
+
+  // 2nd METHOD
+  // updateOne- 1st parameter is what to update 2nd parameter is updated data, third is validator
+  // const upadatedProduct = await Product.updateOne(
+  //   { _id: id },
+  //   { $set: data },
+  //   { runValidators: true }
+  // );
+
+  // update Single Property - price will increment by 3
+  // const upadatedProduct = await Product.updateOne(
+  //   { _id: id },
+  //   { $inc: data },
+  //   { runValidators: true }
+  // );
+};
