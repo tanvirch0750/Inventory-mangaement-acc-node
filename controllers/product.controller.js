@@ -2,8 +2,10 @@ const Product = require('../models/Product');
 const {
   getProductsService,
   createProductService,
-  updateProductService,
   bulkUpdateProductService,
+  updateProductByIdService,
+  deleteProductByIdService,
+  bulkDeleteProductService,
 } = require('../services/product.services');
 
 exports.getProducts = async (req, res, next) => {
@@ -45,10 +47,10 @@ exports.createProduct = async (req, res, next) => {
   }
 };
 
-exports.updateProduct = async (req, res, next) => {
+exports.updateProductById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await updateProductService(id, req.body);
+    const result = await updateProductByIdService(id, req.body);
 
     res.status(200).json({
       status: 'success',
@@ -74,6 +76,48 @@ exports.bulkUpdateProducts = async (req, res, next) => {
     res.status(400).json({
       status: 'failed',
       message: 'Products bulk upadate failed',
+      error: error.message,
+    });
+  }
+};
+
+exports.deleteProductById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await deleteProductByIdService(id);
+
+    // check give id is exist or not
+    if (!result.deletedCount) {
+      return res.status(400).json({
+        status: 'failed',
+        error: 'could not delete the product',
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Product deleted successfully',
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'failed',
+      message: 'Product delete failed',
+      error: error.message,
+    });
+  }
+};
+
+exports.bulkDeleteProducts = async (req, res, next) => {
+  try {
+    const result = await bulkDeleteProductService(req.body.ids);
+    res.status(200).json({
+      status: 'success',
+      message: 'Product bulk delete successfull',
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'failed',
+      message: 'Products bulk delete failed',
       error: error.message,
     });
   }

@@ -34,7 +34,7 @@ exports.createProductService = async (data) => {
   return product;
 };
 
-exports.updateProductService = async (id, data) => {
+exports.updateProductByIdService = async (id, data) => {
   // 1st METHOD
   const product = await Product.findById(id);
   const result = await product.set(data).save();
@@ -67,5 +67,15 @@ exports.bulkUpdateProductService = async (data) => {
     products.push(Product.updateOne({ _id: product.id }, product.data))
   );
   const result = await Promise.all(products);
+  return result;
+};
+
+exports.deleteProductByIdService = async (id) => {
+  const result = await Product.deleteOne({ _id: id });
+  return result;
+};
+
+exports.bulkDeleteProductService = async (ids) => {
+  const result = await Product.deleteMany({ _id: ids });
   return result;
 };
