@@ -26,9 +26,15 @@ exports.getProducts = async (req, res, next) => {
       queries.fields = fields;
     }
 
-    console.log(queries);
+    // fileter with: gt, lt, gte,lte
+    let filterString = JSON.stringify(filters);
+    filterString = filterString.replace(
+      /\b(gt|gte|lt|lte)\b/g,
+      (match) => `$${match}`
+    );
+    const newFilters = JSON.parse(filterString);
 
-    const products = await getProductsService(filters, queries);
+    const products = await getProductsService(newFilters, queries);
 
     res.status(200).json({
       status: 'success',
