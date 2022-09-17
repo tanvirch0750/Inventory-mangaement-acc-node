@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 
-exports.getProductsService = async () => {
+exports.getProductsService = async (filters, queries) => {
   // const products = await Product.where('name')
   //   .equals(/\w/)
   //   .where('quantity')
@@ -8,9 +8,11 @@ exports.getProductsService = async () => {
   //   .lt(600)
   //   .limit(2)
   //   .sort({ quantity: -1 });
-
   //const product = await Product.findById('631c9f5b15301760d43a7e99');
-  const products = await Product.find({});
+
+  const products = await Product.find(filters)
+    .select(queries.fields)
+    .sort(queries.sortBy);
 
   const data = {
     length: products.length,
