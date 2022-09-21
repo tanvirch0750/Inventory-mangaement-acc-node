@@ -26,6 +26,13 @@ exports.getProducts = async (req, res, next) => {
       queries.fields = fields;
     }
 
+    if (req.query.page) {
+      const { page = 1, limit = 5 } = req.query;
+      const skipValue = (parseInt(page) - 1) * parseInt(limit);
+      queries.skip = skipValue;
+      queries.limit = parseInt(limit);
+    }
+
     // fileter with: gt, lt, gte,lte
     let filterString = JSON.stringify(filters);
     filterString = filterString.replace(

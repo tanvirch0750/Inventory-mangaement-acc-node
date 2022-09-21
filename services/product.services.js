@@ -11,11 +11,18 @@ exports.getProductsService = async (filters, queries) => {
   //const product = await Product.findById('631c9f5b15301760d43a7e99');
 
   const products = await Product.find(filters)
+    .skip(queries.skip)
+    .limit(queries.limit)
     .select(queries.fields)
     .sort(queries.sortBy);
 
+  const totalProducts = await Product.countDocuments(filters);
+  const pageCount = Math.ceil(totalProducts / queries.limit);
+
   const data = {
-    length: products.length,
+    totalProducts,
+    pageCount,
+    foundProducts: products.length,
     products,
   };
 
