@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const { ObjectId } = mongoose.Schema.Types;
 
-const BrandSchema = mongoose.Schema(
+const brandSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -51,6 +51,6 @@ const BrandSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const Brand = mongoose.model('Brand', BrandSchema);
+const Brand = mongoose.model('Brand', brandSchema);
 
 module.exports = Brand;
