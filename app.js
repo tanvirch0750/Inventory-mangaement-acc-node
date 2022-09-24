@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const productRoute = require('./routes/product.route.js');
+const brandRoute = require('./routes/brand.route.js');
 
 // middlewares
 app.use(express.json());
@@ -13,5 +14,6 @@ app.get('/', (req, res) => {
 
 // route
 app.use('/api/v1/product', productRoute);
+app.use('/api/v1/brand', brandRoute);
 
 module.exports = app;

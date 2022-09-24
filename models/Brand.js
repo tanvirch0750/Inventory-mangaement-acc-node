@@ -25,6 +25,14 @@ const brandSchema = mongoose.Schema(
       type: String,
       validate: [validator.isURL, 'Please provide valid URL'],
     },
+    status: {
+      type: String,
+      enum: {
+        values: ['active', 'inactive'],
+        message: `status value can't be {VALUE}, must be active or inactive`,
+      },
+      default: 'active',
+    },
     location: String,
     products: [
       {
@@ -42,11 +50,6 @@ const brandSchema = mongoose.Schema(
         },
       },
     ],
-    status: {
-      type: String,
-      enum: ['active, inactive'],
-      default: 'active',
-    },
   },
   { timestamps: true }
 );
