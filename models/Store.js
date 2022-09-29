@@ -11,14 +11,14 @@ const storeSchema = mongoose.Schema(
       lowercase: true,
       enum: {
         values: [
-          'Dhaka',
-          'Chattagram',
-          'Khulna',
-          'Barishal',
-          'Sylhet',
-          'Rajshahi',
-          'Rangpur',
-          'Mymensingh',
+          'dhaka',
+          'chattagram',
+          'khulna',
+          'barishal',
+          'sylhet',
+          'rajshahi',
+          'rangpur',
+          'mymensingh',
         ],
         message: '{VALUE} is not a valid name',
       },
@@ -29,7 +29,10 @@ const storeSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['active, inactive'],
+      enum: {
+        values: ['active', 'inactive'],
+        message: `status value can't be {VALUE}, must be active or inactive`,
+      },
       default: 'active',
     },
     manager: {
