@@ -23,27 +23,27 @@ const productSchema = mongoose.Schema(
         values: ['kg', 'litre', 'pcs', 'bag'],
         message: `Unit value can't be {VALUE}, must be kg/litre/pcs/bag`,
       },
-      default: 'active',
+      required: true,
     },
-    imageUrls: [
+    imageURLs: [
       {
         type: String,
         required: true,
-        validate: {
-          validator: (value) => {
-            if (!Array.isArray(value)) {
-              return false;
-            }
-            let isValid = true;
-            value.forEach((url) => {
-              if (!validator.isURL(url)) {
-                isValid = false;
-              }
-            });
-            return isValid;
-          },
-          message: 'Please provide valid image urls',
-        },
+        // validate: {
+        //   validator: (value) => {
+        //     if (!Array.isArray(value)) {
+        //       return false;
+        //     }
+        //     let isValid = true;
+        //     value.forEach((url) => {
+        //       if (!validator.isURL(url)) {
+        //         isValid = false;
+        //       }
+        //     });
+        //     return isValid;
+        //   },
+        //   message: 'Please provide valid image urls',
+        // },
       },
     ],
     category: {
@@ -54,6 +54,7 @@ const productSchema = mongoose.Schema(
       name: {
         type: String,
         required: true,
+        lowercase: true,
       },
       id: {
         type: ObjectId,

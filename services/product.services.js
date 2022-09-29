@@ -1,7 +1,9 @@
+const Brand = require('../models/Brand');
 const Product = require('../models/Product');
 
 exports.getProductsService = async (filters, queries) => {
   const products = await Product.find(filters)
+    .populate('brand.id', 'status location email website -_id')
     .skip(queries.skip)
     .limit(queries.limit)
     .select(queries.fields)
@@ -22,6 +24,16 @@ exports.getProductsService = async (filters, queries) => {
 
 exports.createProductService = async (data) => {
   const product = await Product.create(data);
+
+  // poppulate brand
+  const updatedBrand = await Brand.updateOne(
+    { name: product.brand.name },
+    {
+      $push: {
+        products: product._id,
+      },
+    }
+  );
   return product;
 };
 
