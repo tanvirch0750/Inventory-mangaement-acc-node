@@ -75,7 +75,7 @@ const supplierSchema = mongoose.Schema(
       enum: {
         values: [
           'dhaka',
-          'chattagram',
+          'chattogram',
           'khulna',
           'barishal',
           'sylhet',

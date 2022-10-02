@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Mezbaul Abedin Persian",
+    "email": "mezba.pran@test.com",
+    "brand": {
+      "name": "Pran",
+      "id": "6339696f25817a56ac63b526"
+    },
+    "contactNumber": ["01111111111", "02222222222"],
+    "emergencyContactNumber": "011111111",
+    "tradeLicenceNumber": 1111111111,
+    "presentAddress": "944 Honduras Street",
+    "permanentAddress": "944 Ghana Street",
+    "location": "chattogram",
+    "imageURL": "https://i.ibb.co/R01bYQB/11.jpg",
+    "nationalIdImageURL": "https://prod-media-eng.dhakatribune.com/uploads/2018/07/web-national-id-edited-26-11-2017-1532158137905.jpg",
+    "status": "active"
+  },
+  {
+    "name": "Abdullah Al Fahim",
+    "email": "fahim.teer@test.com",
+    "brand": {
+      "name": "Teer",
+      "id": "6339c920169012349c2e3ba1"
+    },
+    "contactNumber": ["01111111111", "02222222222"],
+    "emergencyContactNumber": "011111111",
+    "tradeLicenceNumber": 1111111111,
+    "presentAddress": "944 Uganda Street",
+    "permanentAddress": "944 Ghana Street",
+    "location": "dhaka",
+    "imageURL": "https://i.ibb.co/R01bYQB/11.jpg",
+    "nationalIdImageURL": "https://prod-media-eng.dhakatribune.com/uploads/2018/07/web-national-id-edited-26-11-2017-1532158137905.jpg",
+    "status": "active"
+  },
+  {
+    "name": "Jhankar Mahbub",
+    "email": "jhankar.rupchanda@test.com",
+    "brand": {
+      "name": "Rupchanada",
+      "id": "6339691f25817a56ac63b524"
+    },
+    "contactNumber": ["01111111111", "02222222222"],
+    "emergencyContactNumber": "011111111",
+    "tradeLicenceNumber": 1111111111,
+    "presentAddress": "944 Honduras Street",
+    "permanentAddress": "944 Ghana Street",
+    "location": "dhaka",
+    "imageURL": "https://i.ibb.co/R01bYQB/11.jpg",
+    "nationalIdImageURL": "https://prod-media-eng.dhakatribune.com/uploads/2018/07/web-national-id-edited-26-11-2017-1532158137905.jpg",
+    "status": "active"
+  },
+  {
+    "name": "Rasel Ahmed",
+    "email": "rasel.fresh@test.com",
+    "brand": {
+      "name": "Fresh",
+      "id": "633968b325817a56ac63b522"
+    },
+    "contactNumber": ["01111111111", "02222222222"],
+    "emergencyContactNumber": "011111111",
+    "tradeLicenceNumber": 1111111111,
+    "presentAddress": "944 Honduras Street",
+    "permanentAddress": "944 Ghana Street",
+    "location": "chattogram",
+    "imageURL": "https://i.ibb.co/R01bYQB/11.jpg",
+    "nationalIdImageURL": "https://prod-media-eng.dhakatribune.com/uploads/2018/07/web-national-id-edited-26-11-2017-1532158137905.jpg",
+    "status": "active"
+  }
+]

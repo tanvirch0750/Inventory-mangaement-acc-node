@@ -13,7 +13,6 @@ const stockSchema = mongoose.Schema(
       type: String,
       required: [true, 'Product Name is required'],
       trim: true,
-      unique: [true, 'This name alreay exist. Name must be unique'],
       minLength: [3, 'Name must be atlest 3 characters'],
       maxLength: [100, 'Name is too large'],
       lowercase: true,
@@ -34,21 +33,7 @@ const stockSchema = mongoose.Schema(
       {
         type: String,
         required: true,
-        validate: {
-          validator: (value) => {
-            if (!Array.isArray(value)) {
-              return false;
-            }
-            let isValid = true;
-            value.forEach((url) => {
-              if (!validator.isURL(url)) {
-                isValid = false;
-              }
-            });
-            return isValid;
-          },
-          message: 'Please provide valid image urls',
-        },
+        validate: [validator.isURL, 'Plese provide valid image ulrs'],
       },
     ],
     price: {
@@ -80,7 +65,7 @@ const stockSchema = mongoose.Schema(
       type: String,
       required: true,
       enum: {
-        values: ['in-stock, out-of-stock', 'discontinued'],
+        values: ['in-stock', 'out-of-stock', 'discontinued'],
         message:
           'status cannot be {VALUE} must be in-stock/out-of-stock/discontinued',
       },
@@ -93,14 +78,14 @@ const stockSchema = mongoose.Schema(
         lowercase: true,
         enum: {
           values: [
-            'Dhaka',
-            'Chattagram',
-            'Khulna',
-            'Barishal',
-            'Sylhet',
-            'Rajshahi',
-            'Rangpur',
-            'Mymensingh',
+            'dhaka',
+            'chattogram',
+            'khulna',
+            'barishal',
+            'sylhet',
+            'rajshahi',
+            'rangpur',
+            'mymensingh',
           ],
           message: '{VALUE} is not a valid name',
         },
@@ -121,6 +106,11 @@ const stockSchema = mongoose.Schema(
         type: ObjectId,
         ref: 'Supplier',
       },
+    },
+    sellCount: {
+      type: Number,
+      default: 0,
+      min: 0,
     },
   },
   { timestamps: true }
