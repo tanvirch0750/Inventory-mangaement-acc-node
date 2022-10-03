@@ -27,7 +27,7 @@ exports.createProductService = async (data) => {
 
   // poppulate brand
   const updatedBrand = await Brand.updateOne(
-    { name: product.brand.name },
+    { _id: product.brand.id },
     {
       $push: {
         products: product._id,

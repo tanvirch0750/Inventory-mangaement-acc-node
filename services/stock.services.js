@@ -26,7 +26,11 @@ exports.getStocksService = async (filters, queries) => {
 };
 
 exports.getStockByIdService = async (id) => {
-  const stock = await Stock.findOne({ _id: id });
+  const stock = await Stock.findOne({ _id: id })
+    .populate('store.id')
+    .populate('suppliedBy.id')
+    .populate('brand.id')
+    .populate('productId');
   return stock;
 };
 
