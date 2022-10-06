@@ -8,8 +8,13 @@ const {
   bulkDeleteProducts,
   fileUpload,
 } = require('../controllers/product.controller');
+const authMiddleware = require('../middlewares/auth.middleware');
 const uploader = require('../middlewares/uploader.middleware');
+const verifyTokenMiddleware = require('../middlewares/verifyToken.middleware');
 const router = express.Router();
+
+// if we need verify token in every router
+//router.use(verifyTokenMiddleware);
 
 // uploader.single = single image
 // uplader.arry = multiple image
@@ -25,8 +30,18 @@ router.post('/file-upload', uploader.array('image'), fileUpload);
 router.route('/bulk-update').patch(bulkUpdateProducts);
 router.route('/bulk-delete').delete(bulkDeleteProducts);
 
-router.route('/').get(getProducts).post(createProduct);
+router
+  .route('/')
+  .get(getProducts)
+  .post(
+    verifyTokenMiddleware,
+    authMiddleware('admin', 'store-manager'),
+    createProduct
+  );
 
-router.route('/:id').patch(updateProductById).delete(deleteProductById);
+router
+  .route('/:id')
+  .patch(updateProductById)
+  .delete(verifyTokenMiddleware, authMiddleware('admin'), deleteProductById);
 
 module.exports = router;
