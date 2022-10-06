@@ -52,8 +52,6 @@ exports.login = async (req, res, next) => {
 
     const isPasswordValid = user.comparePassword(password, user.password);
 
-    console.log(isPasswordValid);
-
     if (!isPasswordValid) {
       return res.status(403).json({
         status: 'fail',
@@ -79,6 +77,23 @@ exports.login = async (req, res, next) => {
         user: others,
         token,
       },
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'fail',
+      error,
+    });
+  }
+};
+
+exports.getMe = async (req, res) => {
+  try {
+    const user = await findUserByEmail(req.user?.email);
+    const { password: pass, ...others } = user.toObject();
+    res.status(200).json({
+      status: 'success',
+      message: 'Successfully found the user',
+      user: others,
     });
   } catch (error) {
     res.status(500).json({
